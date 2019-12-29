@@ -206,6 +206,9 @@ void cleanup_after_vm(supervisor_allocation* heap) {
 
 bool run_code_py(safe_mode_t safe_mode) {
     bool serial_connected_at_start = serial_connected();
+    if (serial_connected_at_start) {
+        serial_write("\r\n***** Modified by David H *****\r\n\n");
+    }
     #if CIRCUITPY_AUTORELOAD_DELAY_MS > 0
     if (serial_connected_at_start) {
         serial_write("\n");
